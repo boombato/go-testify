@@ -25,7 +25,7 @@ func TestMainHandlerWhenCorrectRequest(t *testing.T) {
 
 func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 	totalCount := 4
-	req := httptest.NewRequest("GET", "/cafe?count=8&city=moscow", nil)
+	req := httptest.NewRequest("GET", "/cafe?count=10&city=moscow", nil)
 
 	responseRecorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(mainHandle)
@@ -37,9 +37,9 @@ func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 	assert.Len(t, list, totalCount)
 }
 
-func TestMainHandlerWhenNotCorrectCity(t *testing.T) {
+func TestMainHandlerWhenCityIncorrect(t *testing.T) {
 	answer := "wrong city value"
-	req := httptest.NewRequest("GET", "/cafe?count=4&city=london", nil)
+	req := httptest.NewRequest("GET", "/cafe?count=4&city=tula", nil)
 
 	responseRecorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(mainHandle)
